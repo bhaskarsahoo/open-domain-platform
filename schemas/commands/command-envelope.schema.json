@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://open-domain-platform.dev/schemas/commands/command-envelope.schema.json",
+  "title": "Open Domain Platform Command Envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "command_id",
+    "command_type",
+    "command_version",
+    "source",
+    "tenant_id",
+    "requested_at",
+    "target",
+    "payload"
+  ],
+  "properties": {
+    "command_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "command_type": {
+      "type": "string",
+      "minLength": 3,
+      "examples": ["CreateFarmAdvisory"]
+    },
+    "command_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "source": {
+      "type": "string",
+      "minLength": 3,
+      "examples": ["ai_advisor.mock"]
+    },
+    "tenant_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "requested_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "correlation_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "actor": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "type": { "type": "string" },
+        "id": { "type": "string" }
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["doctype"],
+      "properties": {
+        "doctype": { "type": "string" },
+        "name": { "type": "string" }
+      }
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}
