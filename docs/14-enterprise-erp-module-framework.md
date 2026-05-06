@@ -33,7 +33,11 @@ The platform should be evaluated against these ERP capability areas:
 - Asset management and maintenance
 - Quality management
 - Human resources and workforce/time management
+- Payroll or payroll integration
+- Expense management
 - Services management
+- Business operations and internal operations
+- IT operations and service management
 - Supply chain planning and execution
 - Transportation and logistics
 - Compliance, risk, and audit
@@ -57,8 +61,12 @@ The platform should be evaluated against these ERP capability areas:
 | Project management | ERPNext Projects plus domain project lifecycle extensions |
 | Asset management | ERPNext assets/maintenance plus optional IoT maintenance events |
 | Quality management | ERPNext quality plus domain checklists and certificates |
-| HR / time | ERPNext HR or integration; timesheets for project/labor costing |
+| HR / workforce | ERPNext HR where available, explicit workforce lifecycle, and integrations where needed |
+| Payroll | ERPNext payroll where applicable or external payroll integration |
+| Expense management | ERPNext expense claim / purchase workflows plus policy extensions |
 | Services | ERPNext Projects/Support plus domain service workflows |
+| Business operations | Workflow, approvals, internal requests, assets, procurement, service desk |
+| IT operations | Support/issues, asset assignment, subscriptions, vendor management, service requests |
 | Supply chain | ERPNext stock/buying/selling plus event-driven supply-chain module |
 | Transportation | Optional logistics module; ERPNext delivery/shipment references |
 | Compliance | Domain-specific compliance module |
@@ -79,6 +87,8 @@ A lifecycle should include:
 - Approval flow
 - Inventory movement
 - Financial impact
+- Workforce and HR impact
+- Operations impact
 - Quality or compliance checkpoints
 - Analytics and reporting
 - Domain events
@@ -115,6 +125,10 @@ Every major workflow should be documented using this structure:
 ## Financial impact
 
 ## Inventory impact
+
+## Workforce / HR impact
+
+## Operations impact
 
 ## Quality/compliance impact
 
@@ -226,8 +240,9 @@ Modules involved:
 - Inventory
 - Accounts payable
 - Accounts receivable
-- Timesheets
+- HR / workforce and timesheets
 - Quality
+- Operations
 - Analytics
 
 ## 10. Example domain lifecycle: cement distribution and production-lite
@@ -259,7 +274,43 @@ Modules involved:
 - Finance
 - Analytics
 
-## 11. Dataset research requirements
+## 11. Example domain lifecycle: software and services
+
+```text
+Lead Created
+  -> Opportunity Qualified
+  -> Proposal Submitted
+  -> Contract Won
+  -> Project Created
+  -> Resource Plan Created
+  -> Employees Assigned
+  -> Sprint or Milestone Planned
+  -> Timesheets Submitted
+  -> Milestone Completed
+  -> Customer Invoice Submitted
+  -> Payment Received
+  -> Support Period Started
+  -> Support Tickets Resolved
+  -> Project Profitability Reviewed
+  -> Contract Renewed or Closed
+```
+
+Modules involved:
+
+- CRM
+- Sales
+- Project management
+- HR / workforce
+- Timesheets
+- Services / support
+- Expense management
+- Assets and subscriptions
+- Accounts receivable
+- Analytics
+
+See `docs/15-hr-operations-software-industry.md` for the detailed HR, operations, and software/services lifecycle.
+
+## 12. Dataset research requirements
 
 For each domain dataset, capture:
 
@@ -271,7 +322,7 @@ For each domain dataset, capture:
 - Which missing fields require synthetic augmentation
 - License and commercial-use status
 
-## 12. Domain selection criteria
+## 13. Domain selection criteria
 
 A domain is useful for validation when it stresses multiple ERP modules.
 
@@ -280,13 +331,14 @@ Good validation domains:
 - Smart farming and supply chain
 - Construction project lifecycle
 - Cement production/distribution
+- Software and services operations
 - Retail and distribution
 - Manufacturing-lite
 - Cold chain logistics
 
 Avoid validating only narrow ML datasets that do not test ERP flows.
 
-## 13. Build strategy
+## 14. Build strategy
 
 The platform should not build all industry solutions fully.
 
@@ -303,7 +355,7 @@ Instead, for each selected domain:
 
 Only then should implementation begin.
 
-## 14. Success criteria
+## 15. Success criteria
 
 The research is successful when we can answer these questions for a domain:
 
