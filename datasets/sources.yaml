@@ -338,3 +338,69 @@ sources:
         - Plant
         - Cement Batch
         - Sustainability Report
+
+  - id: kaggle-construction-project-management
+    name: Construction Project Management Dataset
+    domain: construction
+    provider: Kaggle public dataset listing
+    source_url: https://www.kaggle.com/datasets/programmer3/construction-project-management-dataset
+    access_type: download
+    license_review_status: needs-final-review
+    commercial_use_status: listed-as-cc0-public-domain-review-needed
+    useful_for:
+      - construction-project-lifecycle-demo
+      - project-costing-demo
+      - schedule-risk-demo
+      - material-cost-demo
+      - labor-and-equipment-planning-demo
+    fields_expected:
+      - project-id
+      - task-id
+      - task-duration
+      - labor-availability
+      - equipment-usage
+      - material-costs
+      - risk-level
+      - dependencies
+      - start-constraints
+    platform_mapping:
+      events:
+        - ConstructionProjectCreated
+        - ProjectBudgetApproved
+        - MaterialRequestCreated
+        - TimesheetSubmitted
+        - ProgressMeasurementRecorded
+      entities:
+        - Project
+        - Task
+        - Material Request
+        - Timesheet
+        - Project Budget
+
+  - id: mendeley-construction-schedule
+    name: Construction Schedule Data Set
+    domain: construction
+    provider: Mendeley Data
+    source_url: https://data.mendeley.com/datasets/9g5ntn3n4f
+    access_type: download
+    license_review_status: needs-final-review
+    commercial_use_status: listed-as-cc-by-4-review-needed
+    useful_for:
+      - construction-schedule-demo
+      - project-duration-estimation
+      - task-event-generation
+      - project-planning-validation
+    fields_expected:
+      - project
+      - task
+      - schedule-variables
+      - duration
+      - project-duration
+    platform_mapping:
+      events:
+        - ConstructionProjectCreated
+        - ProjectTaskPlanned
+        - ProgressMeasurementRecorded
+      entities:
+        - Project
+        - Task
