@@ -73,7 +73,7 @@ Plug-in Modules
 
 ## Repository status
 
-This repository is currently in the research, architecture, and planning phase. Implementation should begin only after the core design documents, domain model, and module contracts are stable enough to guide development.
+This repository is currently in the research, architecture, dataset selection, and planning phase. Implementation should begin only after the core design documents, domain model, public dataset strategy, and module contracts are stable enough to guide development.
 
 ## Documentation
 
@@ -82,9 +82,14 @@ Start here:
 - [Platform Blueprint](docs/00-platform-blueprint.md)
 - [Architecture](docs/02-architecture.md)
 - [Module System](docs/05-module-system.md)
+- [Public Dataset Strategy](docs/12-public-dataset-strategy.md)
 - [Implementation Roadmap](docs/11-implementation-roadmap.md)
 - [ADR-0001: Platform Direction](decisions/ADR-0001-platform-direction.md)
 
+## Dataset strategy
+
+The project uses public datasets to validate domain models and generate realistic demo flows before building too much custom code. Dataset metadata lives under [`datasets/`](datasets/), while large third-party datasets should be downloaded externally through documented scripts or instructions.
+
 ## Development approach
 
-Use ChatGPT for research, architecture, requirement refinement, and design review. Use Codex for implementation, scaffolding, tests, refactoring, and pull requests once the architecture is ready.
+Use ChatGPT for research, architecture, requirement refinement, dataset strategy, and design review. Use Codex for implementation, scaffolding, tests, refactoring, and pull requests once the architecture is ready.
