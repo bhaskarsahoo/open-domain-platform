@@ -1,0 +1,340 @@
+# Initial public dataset source registry for Open Domain Platform.
+# Verify license and usage terms before commercial use.
+
+sources:
+  - id: nasa-power-weather
+    name: NASA POWER Weather API
+    domain: smart-farming
+    provider: NASA POWER Project
+    source_url: https://power.larc.nasa.gov/docs/services/api/
+    access_type: api
+    license_review_status: needs-final-review
+    commercial_use_status: likely-usable-with-attribution-review-needed
+    useful_for:
+      - weather-adapter
+      - irrigation-advisory
+      - disease-risk-features
+      - yield-forecast-features
+      - iot-simulation-baseline
+    fields_expected:
+      - date
+      - latitude
+      - longitude
+      - temperature
+      - precipitation
+      - humidity
+      - solar-radiation
+      - wind-speed
+    platform_mapping:
+      events:
+        - WeatherObservationReceived
+        - WeatherForecastUpdated
+      entities:
+        - Plot
+        - Farm
+        - Crop Plan
+
+  - id: soilgrids
+    name: SoilGrids Soil Property Data
+    domain: smart-farming
+    provider: ISRIC World Soil Information
+    source_url: https://soilgrids.org/
+    access_type: api
+    license_review_status: needs-final-review
+    commercial_use_status: likely-usable-with-attribution-review-needed
+    useful_for:
+      - plot-enrichment
+      - crop-suitability
+      - fertilizer-advisory
+      - soil-risk-analysis
+    fields_expected:
+      - latitude
+      - longitude
+      - soil-ph
+      - soil-organic-carbon
+      - nitrogen
+      - clay
+      - sand
+      - silt
+      - bulk-density
+    platform_mapping:
+      events:
+        - SoilProfileUpdated
+      entities:
+        - Plot
+        - Farm
+
+  - id: plantvillage
+    name: PlantVillage Plant Disease Image Dataset
+    domain: smart-farming
+    provider: PlantVillage / Penn State ecosystem
+    source_url: https://plantvillage.psu.edu/
+    access_type: download
+    license_review_status: needs-careful-review
+    commercial_use_status: unknown-until-license-confirmed
+    useful_for:
+      - disease-detection-research
+      - ai-advisor-demo
+      - image-classification-experiments
+    fields_expected:
+      - crop
+      - disease-label
+      - image
+      - health-status
+    platform_mapping:
+      events:
+        - DiseaseObservationClassified
+        - DiseaseRiskDetected
+      entities:
+        - Field Inspection
+        - Farm Advisory
+
+  - id: data-gov-india-crop-production
+    name: India Crop Production Public Data
+    domain: smart-farming
+    provider: Government of India open data ecosystem
+    source_url: https://www.data.gov.in/
+    access_type: api-or-download
+    license_review_status: needs-final-review
+    commercial_use_status: needs-review
+    useful_for:
+      - regional-crop-baselines
+      - yield-analytics
+      - demo-data-generation
+      - smart-farming-domain-validation
+    fields_expected:
+      - state
+      - district
+      - crop
+      - season
+      - area
+      - production
+      - yield
+      - year
+    platform_mapping:
+      events:
+        - RegionalCropProductionImported
+      entities:
+        - Crop
+        - Crop Season
+        - Crop Plan
+
+  - id: data-gov-india-market-prices
+    name: India Agricultural Market Price Data
+    domain: smart-farming
+    provider: Government of India open data ecosystem
+    source_url: https://www.data.gov.in/
+    access_type: api-or-download
+    license_review_status: needs-final-review
+    commercial_use_status: needs-review
+    useful_for:
+      - market-price-adapter
+      - farmer-advisory
+      - sales-planning
+      - procurement-pricing-demo
+    fields_expected:
+      - market
+      - commodity
+      - variety
+      - min-price
+      - max-price
+      - modal-price
+      - arrival-date
+    platform_mapping:
+      events:
+        - MarketPriceUpdated
+      entities:
+        - Item
+        - Crop
+        - Farm Advisory
+
+  - id: faostat
+    name: FAOSTAT Crops and Livestock Products
+    domain: smart-farming
+    provider: Food and Agriculture Organization of the United Nations
+    source_url: https://www.fao.org/faostat/
+    access_type: api-or-download
+    license_review_status: needs-final-review
+    commercial_use_status: likely-usable-with-attribution-review-needed
+    useful_for:
+      - global-crop-baselines
+      - benchmark-analytics
+      - domain-research
+    fields_expected:
+      - country
+      - item
+      - element
+      - year
+      - unit
+      - value
+    platform_mapping:
+      events:
+        - ReferenceCropStatisticImported
+      entities:
+        - Crop
+        - Region
+
+  - id: dataco-supply-chain
+    name: DataCo Smart Supply Chain Dataset
+    domain: supply-chain
+    provider: DataCo / public research dataset mirrors
+    source_url: https://data.mendeley.com/
+    access_type: download
+    license_review_status: needs-final-review
+    commercial_use_status: likely-attribution-required
+    useful_for:
+      - order-flow-demo
+      - shipment-delay-analysis
+      - demand-analytics
+      - inventory-and-fulfillment-events
+      - supply-chain-domain-validation
+    fields_expected:
+      - order-id
+      - order-date
+      - customer
+      - product
+      - category
+      - sales
+      - quantity
+      - shipping-date
+      - delivery-status
+      - market
+      - region
+      - late-delivery-risk
+    platform_mapping:
+      events:
+        - SalesOrderSubmitted
+        - ShipmentCreated
+        - ShipmentDispatched
+        - ShipmentDelayed
+        - DeliveryCompleted
+      entities:
+        - Customer
+        - Item
+        - Sales Order
+        - Shipment
+        - Delivery Note
+
+  - id: uci-online-retail
+    name: UCI Online Retail Transaction Dataset
+    domain: retail-supply-chain
+    provider: UCI Machine Learning Repository
+    source_url: https://archive.ics.uci.edu/
+    access_type: download
+    license_review_status: needs-final-review
+    commercial_use_status: needs-review
+    useful_for:
+      - order-transaction-demo
+      - demand-forecasting
+      - customer-sales-analytics
+      - pos-like-flow-generation
+    fields_expected:
+      - invoice-no
+      - stock-code
+      - description
+      - quantity
+      - invoice-date
+      - unit-price
+      - customer-id
+      - country
+    platform_mapping:
+      events:
+        - POSInvoiceSubmitted
+        - SalesInvoiceSubmitted
+      entities:
+        - Customer
+        - Item
+        - Sales Invoice
+        - POS Invoice
+
+  - id: m5-forecasting
+    name: M5 Forecasting Competition Dataset
+    domain: retail-supply-chain
+    provider: M Competitions / Walmart-based public dataset
+    source_url: https://mofc.unic.ac.cy/m5-competition/
+    access_type: download
+    license_review_status: needs-final-review
+    commercial_use_status: needs-review
+    useful_for:
+      - demand-forecasting
+      - inventory-planning
+      - replenishment-simulation
+      - analytics-demo
+    fields_expected:
+      - item-id
+      - department
+      - category
+      - store
+      - state
+      - date
+      - sales
+      - price
+      - calendar-events
+    platform_mapping:
+      events:
+        - DemandHistoryImported
+        - StockoutRiskDetected
+      entities:
+        - Item
+        - Warehouse
+        - Forecast
+
+  - id: uci-concrete-compressive-strength
+    name: UCI Concrete Compressive Strength Dataset
+    domain: cement
+    provider: UCI Machine Learning Repository
+    source_url: https://archive.ics.uci.edu/
+    access_type: download
+    license_review_status: needs-final-review
+    commercial_use_status: needs-review
+    useful_for:
+      - cement-quality-modeling
+      - production-quality-demo
+      - second-domain-validation
+    fields_expected:
+      - cement
+      - blast-furnace-slag
+      - fly-ash
+      - water
+      - superplasticizer
+      - coarse-aggregate
+      - fine-aggregate
+      - age
+      - compressive-strength
+    platform_mapping:
+      events:
+        - ConcreteMixDesigned
+        - QualityTestCompleted
+      entities:
+        - Cement Batch
+        - Quality Certificate
+        - Test Report
+
+  - id: cement-emissions-public-data
+    name: Public Cement CO2 and Production Data
+    domain: cement
+    provider: public climate and industrial datasets
+    source_url: https://www.globalcement.com/
+    access_type: mixed
+    license_review_status: needs-source-selection
+    commercial_use_status: unknown-until-source-confirmed
+    useful_for:
+      - sustainability-analytics
+      - cement-domain-validation
+      - emissions-reporting-demo
+    fields_expected:
+      - country
+      - plant-or-region
+      - cement-production
+      - clinker-production
+      - energy-use
+      - emissions
+      - year
+    platform_mapping:
+      events:
+        - ProductionMetricImported
+        - EmissionsMetricImported
+      entities:
+        - Plant
+        - Cement Batch
+        - Sustainability Report
